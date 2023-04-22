@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { supabase } from "../client";
 import ItemCard from "./ItemCard";
 const ItemList = () => {
 
     const [itemList, setItemList] = useState([]);
+    let params = useParams();
 
     useEffect(() => {
         const getItems = async () => {
             await supabase
             .from('Products')
             .select()
+            .eq('store_name', params.storeName)
             .then((response) => {
                 console.log(response.data);
                 setItemList(response.data);

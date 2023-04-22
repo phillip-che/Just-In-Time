@@ -18,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/profile" element={<ProfilePage /> } />
         <Route path="/cart" element={<CartPage /> } />
         <Route path="/product/:productID" element={<ProductPage />} />
+        <Route path="/:storeName/products" element={<ItemList />} />
       </Route>
   </Routes>
   </BrowserRouter>
