@@ -9,7 +9,7 @@ function App() {
       <div className="home-page">
         <div className="mission-statement"> 
             <h1 className="ms-title"> THREE WORDS.</h1>
-            <h2 className="ms-body"> AFFORDABLE. SUBSTAINABLE. RELIABLE. </h2>
+            <h2 className="ms-body"> SUBSTAINABLE. AFFORDABLE. RELIABLE. </h2>
         </div>
         <div className="store-list">
           <StoreList/>
