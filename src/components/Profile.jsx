@@ -1,4 +1,4 @@
-import "./Profile.css"
+import "../styles/Profile.css"
 import { useState } from "react";
 import { FaCreditCard } from "react-icons/fa";
 

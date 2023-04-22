@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { supabase } from "../client";
+import Filters from "./Filters";
 import ItemCard from "./ItemCard";
+
 const ItemList = () => {
 
     const [itemList, setItemList] = useState([]);
@@ -21,8 +23,41 @@ const ItemList = () => {
         getItems();
     }, []);
 
+    const onExpFilter = async () => {
+        await supabase
+        .from('Products')
+        .select()
+        .order("exp", { ascending: false })
+        .then((response) => {
+            setItemList(response.data);
+        });
+    }
+
+    const onPriceFilter = async () => {
+        await supabase
+        .from('Products')
+        .select()
+        .order("disc_price", { ascending: false })
+        .then((response) => {
+            setItemList(response.data);
+        });
+    }
+
+    const onDiscountFilter = async () => {
+        await supabase
+        .from('Products')
+        .select()
+        .order("disc_percent", { ascending: false })
+        .then((response) => {
+            setItemList(response.data);
+        });
+    }
+
     return (
         <div>
+            <div className="filters">
+                <Filters />
+            </div>
             {itemList ? (
                 <div className="item-list">
                     {itemList.map((item) => {

@@ -34,7 +34,7 @@ const Cart = () => {
     return (
         <div>
             {/* some styling */}
-
+            CART
         </div>
     )
 }

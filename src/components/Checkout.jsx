@@ -1,6 +1,5 @@
 const Checkout = () => {
 
-
     const onPlaceOrder = () => {
         // save order to database
     }
