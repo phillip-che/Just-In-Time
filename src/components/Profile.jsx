@@ -32,7 +32,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="container">
+        <div className="profile-container">
             <div className="order-history-card">
                 <h2>Order History</h2>
                 <p>No orders to display</p>

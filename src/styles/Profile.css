@@ -1,9 +1,10 @@
-.container {
+.profile-container {
     display: flex;
     justify-content: center;
     background-color: pink;
     padding-top: 5%;
     padding-bottom: 5%;
+    color: black;
 }
 
 .order-history-card {
@@ -51,6 +52,7 @@
     padding: 10px;
     border-radius: 5px;
     border: none;
+    color: white;
 }
 
 .icon-group {
