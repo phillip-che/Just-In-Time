@@ -1,0 +1,32 @@
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #FFFFFF ;
+    color: #ffffff;
+    display: flex;
+    padding: 10px;
+    opacity: 0.8;
+}
+
+.island {
+    background-color: #F9B1B1 ;
+    padding: 0.3rem;
+    margin-top: 20px;
+    border-radius: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.island:hover{
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar-logo {
+    width:auto;
+    height: 50px;
+    border-radius: 50px;
+}
