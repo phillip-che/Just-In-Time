@@ -1,5 +1,4 @@
 .home-page {
-  margin-top: 7rem;
 }
 
 .mission-statement {
@@ -7,19 +6,17 @@
   color: white;
 }
 
-.ms-title {
-  padding-left: 25px;
-  font-size: 10em;
-  line-height: 1.1;
-}
-
 .ms-body {
-  margin-top: -140px;
-  font-size: 4em;
+  padding-top: 30px;
   padding-left: 50px;
-  padding-bottom: 25px;
+  font-size: 7em;
+  line-height: 1;
+  padding-bottom: 35px;
+  letter-spacing: 6px;
 }
 
-.store-list {
-
+.title-stores {
+  
+  font-size: 3em;
+  color: #F9B1B1;
 }

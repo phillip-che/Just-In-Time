@@ -22,11 +22,12 @@ const StoreList = () => {
     return (
         <div>
             {stores ? (
-                <div>
+                <div className="store-list">
                     {stores.map(store => (
                         <StoreCard 
                         storeLogo={store.img} 
                         storeName={store.name}
+                        storeAddr={store.locations[0]}
                         key={store}
                         />
                     ))}

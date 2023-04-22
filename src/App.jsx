@@ -8,8 +8,10 @@ function App() {
     <>
       <div className="home-page">
         <div className="mission-statement"> 
-            <h1 className="ms-title"> THREE WORDS.</h1>
-            <h2 className="ms-body"> SUBSTAINABLE. AFFORDABLE. RELIABLE. </h2>
+            <h1 className="ms-body"> SUBSTAINABLE. <br/> AFFORDABLE. <br/> RELIABLE. <br/> </h1>
+        </div>
+        <div className="title-stores">
+          <h2> Our Stores </h2>
         </div>
         <div className="store-list">
           <StoreList/>

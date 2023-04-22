@@ -1,35 +1,76 @@
-.nav-bar {
+
+.navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background-color: #FFFFFF ;
-    color: #ffffff;
-    display: flex;
+    z-index: 999;
+    background-color: #ffffff;
     padding: 10px;
-    opacity: 0.8;
-    z-index: 1;
+    opacity: 0.9;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-links a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: right;
+  position: absolute;
+  right: 25px;
+}
+
+.btn-cart {
+  background-color: #F9B1B1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 20px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.btn-login {
+  background-color: #F9B1B1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .island {
-    background-color: #F9B1B1 ;
-    padding: 0.3rem;
-    margin-top: 20px;
     border-radius: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: box-shadow 0.2s ease-in-out;
 
-}
-
-.island:hover{
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2) ;
 }
 
 .nav-bar-logo {
-    width:auto;
     height: 50px;
-    border-radius: 50px;
 }

@@ -1,5 +1,26 @@
+.store-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 20px;
+    gap:20px;
+    width: 1000px;
+}
 
-/* 
-.store-list:hover{
-    background-color: black;
-} */ 
+@media screen and (min-width: 768px) {
+    .store-list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+.store-list {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+ 
+  
+  
+  
+  
+  
+  
