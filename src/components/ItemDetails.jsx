@@ -18,7 +18,7 @@ const ItemDetails = () => {
                 console.log(user)
                 setUser(session.user);
             }
-        })
+        });
 
         // method to get and set item
         const getItem = async () => {
@@ -38,6 +38,16 @@ const ItemDetails = () => {
         await supabase
         .from('Carts')
         .insert({user_id: user.id, product_id: params.productID, quantity: quantity})
+    }
+
+    const onIncrease = () => {
+        setQuantity(quantity + 1);
+    }
+
+    const onDecrease = () => {
+        if (quantity > 0) {
+            setQuantity(quantity - 1);
+        }
     }
 
     return (

@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path="/" element={<Layout /> }>
         <Route index={true} element={<App />} />
         <Route path="/login" element={<LoginPage /> } />
-        <Route path="/profile" element={<ProfilePage /> } />
+        <Route path="/profile/:profileID" element={<ProfilePage /> } />
         <Route path="/cart" element={<CartPage /> } />
         <Route path="/product/:productID" element={<ProductPage />} />
         <Route path="/:storeName/products" element={<ItemListView />} />
