@@ -1,12 +1,27 @@
 import "../styles/Profile.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "../client";
 import { FaCreditCard } from "react-icons/fa";
 
 const Profile = () => {
-    const [creditCard, setCreditCard] = useState("************1234");
+
+    let [user, setUser] = useState("");
+
+    useEffect(() => {
+        // sets user
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log(session);
+            if (session) {
+                setUser(session.user);
+            }
+        })
+    }, [])
+
+    const [creditCard, setCreditCard] = useState("");
     const [showCreditCard, setShowCreditCard] = useState(false);
-    const [securityCode, setSecurityCode] = useState("123");
+    const [securityCode, setSecurityCode] = useState("");
     const [showSecurityCode, setShowSecurityCode] = useState(false);
+    const [expirationDate, setExpirationDate] = useState("");
 
     const handleCreditCardToggle = () => {
         setShowCreditCard(!showCreditCard);
@@ -53,6 +68,17 @@ const Profile = () => {
                             <div className="icon-group" onClick={handleSecurityCodeToggle}>
                                 <FaCreditCard />
                             </div>
+                        </div>
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="expirationDate">Expiration Date</label>
+                        <div className="input-group">
+                            <input
+                                name="expirationDate"
+                                value={expirationDate}
+                                onChange={(e) => setExpirationDate(e.target.value)}
+                                placeholder="07/02/25"
+                            />
                         </div>
                     </div>
                     <div className="button-group">
