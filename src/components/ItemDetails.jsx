@@ -1,13 +1,26 @@
 import { supabase } from "../client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 const ItemDetails = () => {
 
     let params = useParams();
     const [item , setItem] = useState(null);
+    const [quantity, setQuantity] = useState(0);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
+
+        // sets user
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log(session);
+            if (session) {
+                console.log(user)
+                setUser(session.user);
+            }
+        })
+
+        // method to get and set item
         const getItem = async () => {
             await supabase
             .from('Products')
@@ -20,6 +33,12 @@ const ItemDetails = () => {
         }
         getItem();
     }, []);
+
+    const onATC = async () => {
+        await supabase
+        .from('Carts')
+        .insert({user_id: user.id, product_id: params.productID, quantity: quantity})
+    }
 
     return (
         <div>
