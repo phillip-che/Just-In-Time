@@ -8,6 +8,7 @@ import LoginPage from './routes/LoginPage'
 import CartPage from './routes/CartPage'
 import ProfilePage from './routes/ProfilePage'
 import ProductPage from './routes/ProductPage.jsx'
+import ItemListView from './routes/ItemListView'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -18,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/profile" element={<ProfilePage /> } />
         <Route path="/cart" element={<CartPage /> } />
         <Route path="/product/:productID" element={<ProductPage />} />
-        <Route path="/:storeName/products" element={<ItemList />} />
+        <Route path="/:storeName/products" element={<ItemListView />} />
       </Route>
   </Routes>
   </BrowserRouter>
