@@ -7,11 +7,13 @@ function App() {
   return (
     <>
       <div className="home-page">
+        <div className="mission-statement"> 
+            <h1 className="ms-title"> THREE WORDS.</h1>
+            <h2 className="ms-body"> AFFORDABLE. SUBSTAINABLE. RELIABLE. </h2>
+        </div>
+        <div className="store-list">
           <StoreList/>
-          <div className="mission-statement"> 
-            <h1> Mission Statement </h1>
-            <p> bullshit</p>
-          </div>
+        </div>
           <div className="footer">
           </div>
       </div>

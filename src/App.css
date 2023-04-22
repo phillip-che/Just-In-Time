@@ -1,22 +1,24 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.home-page {
+  margin-top: 7rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.mission-statement {
+  background-color: rgba(249,177,177, 0.8);
+  color: white;
 }
 
-
-.card {
-  padding: 2em;
+.ms-title {
+  padding-left: 25px;
+  font-size: 10em;
+  line-height: 1.1;
 }
 
-.read-the-docs {
-  color: #888;
+.ms-body {
+  margin-top: -140px;
+  font-size: 4em;
+  padding-left: 50px;
+}
+
+.store-list {
+
 }
