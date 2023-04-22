@@ -7,6 +7,7 @@ import Layout from './routes/Layout'
 import LoginPage from './routes/LoginPage'
 import CartPage from './routes/CartPage'
 import ProfilePage from './routes/ProfilePage'
+import ProductPage from './routes/ProductPage.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<LoginPage /> } />
         <Route path="/profile" element={<ProfilePage /> } />
         <Route path="/cart" element={<CartPage /> } />
+        <Route path="/product/:productID" element={<ProductPage />} />
       </Route>
   </Routes>
   </BrowserRouter>

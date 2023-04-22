@@ -24,7 +24,11 @@ const StoreList = () => {
             {stores ? (
                 <div className="store-list">
                     {stores.map(store => (
-                        <StoreCard storeLogo={store.img} storeName={store.name} />
+                        <StoreCard 
+                        storeLogo={store.img} 
+                        storeName={store.name}
+                        key={store}
+                        />
                     ))}
                 </div>
             ) : null}
