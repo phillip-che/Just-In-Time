@@ -12,8 +12,8 @@ import ItemListView from './routes/ItemListView'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <Routes>
-      <Route path="/" element={<Layout /> }>
+    <Routes>
+      <Route path="/" element={<Layout />}>
         <Route index={true} element={<App />} />
         <Route path="/login" element={<LoginPage /> } />
         <Route path="/profile/:profileID" element={<ProfilePage /> } />
@@ -21,6 +21,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/product/:productID" element={<ProductPage />} />
         <Route path="/:storeName/products" element={<ItemListView />} />
       </Route>
-  </Routes>
-  </BrowserRouter>
+      <Route path="/profile" element={<Layout />}>
+        <Route index={true} element={<ProfilePage />} />
+      </Route>
+    </Routes>
+  </BrowserRouter >
 )
