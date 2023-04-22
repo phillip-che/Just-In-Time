@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        HOME PAGE
+      Hello
       </div>
     </>
   )
