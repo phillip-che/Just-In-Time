@@ -7,6 +7,8 @@ import { useParams } from "react-router";
 const Profile = () => {
 
     const [user, setUser] = useState(null);
+    const [cartItems, setCartItems] = useState([]);
+    const [cartTotal, setCartTotal] = useState(0);
 
     useEffect(() => {
         // sets user
@@ -16,6 +18,34 @@ const Profile = () => {
                 setUser(session.user);
             }
         })
+
+        // get orders
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log(session);
+            if (session) {
+                setUser(session.user);
+                const getCartItems = async () => {
+                    await supabase
+                        .from('Carts')
+                        .select()
+                        .eq('user_id', session.user.id)
+                        .then((response) => {
+                            console.log(response.data);
+                            const getCartTotal = () => {
+                                let sum = 0;
+                                response.data.forEach((item) => {
+                                    sum += (item.price * item.quantity);
+                                })
+                                setCartTotal(sum.toFixed(2));
+                            }
+                            setCartItems(response.data);
+                            getCartTotal();
+                        });
+                }
+                getCartItems();
+            }
+        });
+
     }, []);
 
     const [showCreditCard, setShowCreditCard] = useState(false);
@@ -29,31 +59,31 @@ const Profile = () => {
     const [address, setAddress] = useState({
         name: "",
         addressLine: "",
-        city: "", 
+        city: "",
         state: "",
         zip: ""
     });
 
     const saveAddress = async () => {
         await supabase
-        .from('Address')
-        .insert({user: user.id, address: address.addressLine, city: address.city, state: address.state, zip: address.zip})
-        .select()
-        .then((response) => {
-            console.log(response);
-            location.reload();
-        })
+            .from('Address')
+            .insert({ user: user.id, address: address.addressLine, city: address.city, state: address.state, zip: address.zip })
+            .select()
+            .then((response) => {
+                console.log(response);
+                location.reload();
+            })
     };
 
     const savePayment = async () => {
         await supabase
-        .from('PaymentInfo')
-        .insert({user: user.id, card_number: card.number, exp_date: card.exp, cvv: card.cvv})
-        .select()
-        .then((response) => {
-            console.log(response);
-            location.reload();
-        })
+            .from('PaymentInfo')
+            .insert({ user: user.id, card_number: card.number, exp_date: card.exp, cvv: card.cvv })
+            .select()
+            .then((response) => {
+                console.log(response);
+                location.reload();
+            })
     }
 
     const handleCreditCardToggle = () => {
@@ -68,19 +98,33 @@ const Profile = () => {
         <div className="profile-container">
             <div className="order-history-card">
                 <h2>Order History</h2>
-                <p>No orders to display</p>
+                <div>
+                    <h2>Order History</h2>
+                    <ul>
+                        {(cartItems || []).map((item) => (
+                            <div key={item.id} className="order-history">
+                                {/* <p>Total Price: ${item.totalPrice}</p> */}
+
+                                {/* {(item || []).map((item) => ( */}
+                                <li key={item.id}>{item.quantity} {item.product_name} - ${item.quantity * item.price}</li>
+                                {/* ))} */}
+
+                            </div>
+                        ))}
+                    </ul>
+                </div>
             </div>
             <div className="payment-address-info-container">
                 <div className="payment-info-card">
                     <h2>Payment Info</h2>
-                    <div className="form-field" style={{marginTop: "2vh"}}>
+                    <div className="form-field" style={{ marginTop: "2vh" }}>
                         <label htmlFor="creditCard">Credit Card</label>
                         <div className="input-group">
                             <input
                                 type={showCreditCard ? "text" : "password"}
                                 name="creditCard"
                                 value={card.number}
-                                onChange={(e) => setCard({number: e.target.value})}
+                                onChange={(e) => setCard({ number: e.target.value })}
                                 placeholder="************1234"
                             />
                             <div className="icon-group" onClick={handleCreditCardToggle}>
@@ -95,7 +139,7 @@ const Profile = () => {
                                 type={showSecurityCode ? "text" : "password"}
                                 name="securityCode"
                                 value={card.cvv}
-                                onChange={(e) => setCard({cvv: e.target.value})}
+                                onChange={(e) => setCard({ cvv: e.target.value })}
                                 placeholder="123"
                             />
                             <div className="icon-group" onClick={handleSecurityCodeToggle}>
@@ -109,7 +153,7 @@ const Profile = () => {
                             <input
                                 name="expirationDate"
                                 value={card.exp}
-                                onChange={(e) => setCard({exp: e.target.value})}
+                                onChange={(e) => setCard({ exp: e.target.value })}
                                 placeholder="07/02/25"
                             />
                         </div>
@@ -120,34 +164,34 @@ const Profile = () => {
                 </div>
                 <div className="address-info-card">
                     <h2>Address Info</h2>
-                    <div className="form-field" style={{marginTop: "2vh"}}>
+                    <div className="form-field" style={{ marginTop: "2vh" }}>
                         <label htmlFor="name">Name</label>
                         <div className="input-group">
-                            <input type="text" name="name" placeholder="John Doe" onChange={(e) => setAddress({name: e.target.value})} />
+                            <input type="text" name="name" placeholder="John Doe" onChange={(e) => setAddress({ name: e.target.value })} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="address">Address</label>
                         <div className="input-group">
-                            <input type="text" name="address" placeholder="123 Main St." onChange={(e) => setAddress({addressLine: e.target.value})} />
+                            <input type="text" name="address" placeholder="123 Main St." onChange={(e) => setAddress({ addressLine: e.target.value })} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="city">City</label>
                         <div className="input-group">
-                            <input type="text" name="city" placeholder="Anytown" onChange={(e) => setAddress({city: e.target.value})} />
+                            <input type="text" name="city" placeholder="Anytown" onChange={(e) => setAddress({ city: e.target.value })} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="state">State</label>
                         <div className="input-group">
-                            <input type="text" name="state" placeholder="CA" onChange={(e) => setAddress({state: e.target.value})} />
+                            <input type="text" name="state" placeholder="CA" onChange={(e) => setAddress({ state: e.target.value })} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="zip">Zip Code</label>
                         <div className="input-group">
-                            <input type="text" name="zip" placeholder="12345" onChange={(e) => setAddress({zip: e.target.value})}/>
+                            <input type="text" name="zip" placeholder="12345" onChange={(e) => setAddress({ zip: e.target.value })} />
                         </div>
                     </div>
                     <div className="button-group">
