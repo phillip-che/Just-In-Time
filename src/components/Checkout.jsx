@@ -8,7 +8,7 @@ const Checkout = () => {
     //     orderID: uuid4(),
     //     scheduleTime: ""
     // });
-    const [orderID, setOrderID] = useState(uuid4());
+    const [orderID, setOrderID] = useState(uuidv4());
     const [user, setUser] = useState(null);
     const [payment, setPayment] = useState(null);
     const [address, setAddress] = useState(null);
@@ -62,15 +62,24 @@ const Checkout = () => {
                 }
                 storeOrderItem();
             })
-            .then((err) => {
-                console.log(err);
+            .then((err) => { // after storing each item in the orders table database, delete all cart rows with user id
+                const deleteCart = async () => {
+                    await supabase
+                    .from('Carts')
+                    .delete()
+                    .eq('user_id', user.id)
+                    .then((err) => {
+                        window.location = `${orderID}/confirmation`
+                    });
+                }
+                deleteCart();
             })
         })
     }
 
     return (
         <div>
-            Checkout Page
+            CHECKOUT PAGE
         </div>
     )
 }

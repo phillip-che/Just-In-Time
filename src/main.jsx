@@ -10,6 +10,7 @@ import ProfilePage from './routes/ProfilePage'
 import ProductPage from './routes/ProductPage.jsx'
 import ItemListView from './routes/ItemListView'
 import CheckoutPage from './routes/CheckoutPage.jsx'
+import ConfirmationPage from './routes/ConfirmationPage.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/product/:productID" element={<ProductPage />} />
         <Route path="/:storeName/products" element={<ItemListView />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/:orderID/confirmation" element={<ConfirmationPage />} />
       </Route>
       <Route path="/profile" element={<Layout />}>
         <Route index={true} element={<ProfilePage />} />
