@@ -5,33 +5,30 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { supabase } from '../client';
+import { useEffect, useState } from 'react';
 
-const ItemCard = ({ productID, storeName, name, price, disc_price, disc_percent, exp, img }) => {
+const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_percent, exp, img }) => {
 
-    const lsCartName = "shopping_cart";
+    const [quantity, setQuantity] = useState(1);
 
-    const addToCart = () => {
-        
-        // const storeCart = async () => {
-        //     await supabase
-        //     .from('Carts')
-        //     .insert({user_id: user.id, product_id: params.productID, quantity: quantity, price: disc_price})
-        // }
-        // storeCart();
-        let new_product = {id: productID, name: name, price: price, disc_price: disc_price};
+    const addToCart = async () => {
+        await supabase
+            .from('Carts')
+            .insert({user_id: user.id, product_id: productID, product_name: name, quantity: quantity, price: disc_price})
+            .select()
+            .then((response) => {
+                console.log(response);
+            })
+    }
 
-        if (localStorage.getItem(lsCartName) === null) {
-            let cart = JSON.stringify([new_product])
-            localStorage.setItem(lsCartName, cart);
-        } else {
-            let parsed_cart = JSON.parse(localStorage.getItem(lsCartName));
-            
-            if(parsed_cart.find(obj => obj.id === productID) !== null){ // found it already
-                // Product is already in the cart and they keep pressing Add to Cart
-                // TODO: Manage quantities here
-            }else{
-                localStorage.setItem(lsCartName, JSON.stringify([...parsed_cart, new_product]));
-            }
+    const incQuantity = () => {
+        setQuantity(quantity + 1);
+    }
+
+    const decQuantity = () => {
+        if(quantity > 1) {
+            setQuantity(quantity - 1);
         }
     }
 
@@ -55,7 +52,7 @@ const ItemCard = ({ productID, storeName, name, price, disc_price, disc_percent,
                 <Button size="small" onClick={addToCart}>Add to Cart</Button>
             </CardActions>
         </Card>
-    );
+    )
 }
 
 export default ItemCard;

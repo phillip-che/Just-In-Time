@@ -7,9 +7,19 @@ import ItemCard from "./ItemCard";
 const ItemList = () => {
 
     const [itemList, setItemList] = useState([]);
+    const [user, setUser] = useState(null);
     let params = useParams();
 
     useEffect(() => {
+
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log(session);
+            if (session) {
+                console.log(user)
+                setUser(session.user);
+            }
+        });
+
         const getItems = async () => {
             await supabase
                 .from('Products')
@@ -65,6 +75,7 @@ const ItemList = () => {
                 <div className="item-list">
                     {itemList.map((item) => 
                         <ItemCard
+                            user={user}
                             productID={item.id}
                             storeName={item.store_name}
                             name={item.name}
