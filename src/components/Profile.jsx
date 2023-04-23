@@ -71,7 +71,7 @@ const Profile = () => {
             .select()
             .then((response) => {
                 console.log(response);
-                location.reload();
+                // location.reload();
             })
     };
 
@@ -82,7 +82,7 @@ const Profile = () => {
             .select()
             .then((response) => {
                 console.log(response);
-                location.reload();
+                // location.reload();
             })
     }
 

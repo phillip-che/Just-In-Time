@@ -125,6 +125,7 @@ const Cart = () => {
     .select()
     .then((response) => {
       console.log(response)
+      window.location = `${orderID}/confirmation`
     })
   }
 
@@ -256,7 +257,7 @@ const Cart = () => {
               {/* <label htmlFor="zipCode">Zip Code</label> */}
               <input type="text" placeholder="Zip Code" id="zipCode" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
 
-              <button type="submit">Place Order</button>
+              <button type="submit" onClick={placeOrder}>Place Order</button>
             </form>
           </div>
         </div>
