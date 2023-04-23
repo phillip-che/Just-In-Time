@@ -99,7 +99,7 @@ const Cart = () => {
     <div className="cart-container">
       <div className="cart-sections">
         <div className="cart-tile">
-          <h2>Shopping Cart</h2>
+          <h2 className="shopping-cart-h2">Shopping Cart</h2>
 
           {cartItems ? (
             <div>

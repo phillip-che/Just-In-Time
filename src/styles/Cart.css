@@ -257,7 +257,10 @@
     background-color: #ff4d8f;
 }
 
-
+.shopping-cart-h2{
+    position: relative;
+    top: 5vh;
+}
 
 @media (max-width: 768px) {
     .cart-container {
@@ -273,3 +276,4 @@
         border-radius: 20px;
     }
 }
+
