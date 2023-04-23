@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { supabase } from "../client";
 import Filters from "./Filters";
 import ItemCard from "./ItemCard";
+import '../styles/ItemList.css'
+import SearchBar from "./SearchBar";
 
 const ItemList = () => {
 
@@ -57,7 +59,10 @@ const ItemList = () => {
     }
 
     return (
-        <div>
+        <div className="product-page">
+        <div className="store-banner">
+        </div>
+            <SearchBar/>
             <div className="filters">
                 <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
             </div>

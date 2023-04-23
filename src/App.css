@@ -38,7 +38,6 @@ h2 {
 }
 
 .scroll-button {
-  scroll-behavior: smooth;
   margin-top:40px;
   background-color: white;
   color:rgba(249,177,177, 0.8);

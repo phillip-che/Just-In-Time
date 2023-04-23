@@ -12,7 +12,7 @@ function App() {
         <div className="title-stores">
           <h2 id="our-stores"> Our Stores </h2>
           <a href='#our-stores' className="smooth">
-            <button className="scroll-button"> {<BsChevronDoubleDown/>} </button>
+            <button className="scroll-button"> {<BsChevronDoubleDown />} </button>
           </a>
         </div>
         <div className="store-list">
