@@ -72,7 +72,7 @@ const ItemList = () => {
         <div className="product-page">
         <div className="store-banner">
         </div>
-            <SearchBar/>
+            {/* <SearchBar/> */}
             <div className="filters">
                 <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
             </div>

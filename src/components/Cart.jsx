@@ -10,6 +10,7 @@ const Cart = () => {
   const [cvv, setCvv] = useState('');
 
   const [user, setUser] = useState("");
+  const [cartTotal, setCartTotal] = useState(0);
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -37,6 +38,14 @@ const Cart = () => {
               .then((response) => {
                 console.log(response.data);
                 setCartItems(response.data);
+                const getCartTotal = () => {
+                  let sum = 0;
+                  response.data.forEach((item) => {
+                    sum += (item.price * item.quantity);
+                  })
+                  setCartTotal(sum.toFixed(2));
+                }
+                getCartTotal();
               });
           }
           getCartItems();
@@ -44,7 +53,6 @@ const Cart = () => {
     });
   }, []);
 
-  const totalPrice = (cartItems || []).reduce((acc, item) => acc + item.disc_price, 0);
 
   const onCheckout = () => {
 
@@ -84,7 +92,7 @@ const Cart = () => {
                       </div>
                   ) : null}
 
-          <div className="cart-total">Total: ${totalPrice.toFixed(2)}</div>
+          <div className="cart-total">Total: ${cartTotal}</div>
         </div>
         <div className="payment-tile">
           <h2 className="tile-header">Payment</h2>
