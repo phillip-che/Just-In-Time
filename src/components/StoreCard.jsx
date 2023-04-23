@@ -18,6 +18,7 @@ export default function StoreCard({ storeLogo, storeName, storeAddr }) {
       maxWidth: 345,
       boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.05)',
       transition: 'box-shadow 0.2s ease-in-out',
+      fontFamily: "Futura",
       '&:hover': {
         boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.15)'
       },
@@ -32,12 +33,12 @@ export default function StoreCard({ storeLogo, storeName, storeAddr }) {
               width="100%"
               image={storeLogo}
             />
-          <CardContent sx={{backgroundImage: 'linear-gradient(45deg, #F9B1B1 60%, pink 85%)' }}>
+          <CardContent sx={{backgroundImage: 'linear-gradient(45deg, #F9B1B1 60%, pink 85%)', fontFamily: "Futura"}}>
             <Typography gutterBottom variant="h5" component="div" 
-              sx={{ color: 'white', fontSize:'32px'}}>
+              sx={{ color: 'white', fontSize:'32px', fontFamily: "Futura", fontWeight: "200"}}>
               {storeName}
             </Typography>
-            <Typography sx={{color: 'black'}} variant="body2" color="text.secondary">
+            <Typography sx={{color: 'black', fontFamily: "Futura"}} variant="body2" color="text.secondary">
               {storeAddr}
             </Typography>
           </CardContent>
