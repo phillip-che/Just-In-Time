@@ -9,26 +9,25 @@ const StoreList = () => {
     useEffect(() => {
         const getStores = async () => {
             await supabase
-            .from('Stores')
-            .select()
-            .then((response) => {
-                setStores(response.data);
-            })
+                .from('Stores')
+                .select()
+                .then((response) => {
+                    setStores(response.data);
+                })
         }
         getStores();
     }, []);
-
 
     return (
         <div>
             {stores ? (
                 <div className="store-list">
                     {stores.map(store => (
-                        <StoreCard 
-                        storeLogo={store.img} 
-                        storeName={store.name}
-                        storeAddr={store.locations[0]}
-                        key={store}
+                        <StoreCard
+                            storeLogo={store.img}
+                            storeName={store.name}
+                            storeAddr={store.locations[0]}
+                            key={store}
                         />
                     ))}
                 </div>
