@@ -56,6 +56,12 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
+    return () => {
+      localStorage.setItem("selectedOption", JSON.stringify(selectedOption));
+    };
+  }, [selectedOption]);
+
+  useEffect(() => {
     const getCartTotal = () => {
       let sum = 0;
       cartItems.forEach((item) => {

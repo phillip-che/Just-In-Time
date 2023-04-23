@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 import { supabase } from "../client.js";
 import logo from '../assets/JIT_long_logo.png'
 import '../styles/NavBar.css'
-import { HiShoppingCart } from 'react-icons/hi'
 import { useState, useEffect } from "react";
+import ShoppingCartIcon from './ShoppingCartIcon'
 
 const NavBar = () => {
 
@@ -28,11 +28,6 @@ const NavBar = () => {
           </div>
         </Link>
         <div class="navbar-buttons">
-          <Link to='/cart'>
-            <div className="btn-cart">
-              <HiShoppingCart /> Cart
-            </div>
-          </Link>
           {!loggedIn ? (<Link to='/login'>
             <div className="btn-login">
               Login
@@ -43,6 +38,9 @@ const NavBar = () => {
               Profile
             </div>
           </Link>}
+          <Link to='/cart'>
+            <ShoppingCartIcon/>
+          </Link>
         </div>
       </div>
     </nav>

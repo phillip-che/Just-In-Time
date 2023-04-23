@@ -5,6 +5,8 @@ const Confirmation = () => {
 
     let params = useParams();
     const [order, setOrder] = useState(null);
+    const [selectedOption, setSelectedOption] = useState("");
+
 
     useEffect(() => {
         const getOrder = async () =>  {
@@ -19,6 +21,13 @@ const Confirmation = () => {
         }
         getOrder();
     })
+
+    useEffect(() => {
+        const storedState = localStorage.getItem("selectedOption");
+        if (storedState) {
+          setSelectedOption(JSON.parse(selectedOption));
+        }
+      }, []);
 
     return (
         <div>
