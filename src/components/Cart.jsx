@@ -3,13 +3,13 @@ import { supabase } from "../client";
 import "../styles/Cart.css";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
 
+  const [cartItems, setCartItems] = useState([]);
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
 
-  let [user, setUser] = useState("");
+  const [user, setUser] = useState("");
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -23,14 +23,7 @@ const Cart = () => {
     // add code to submit payment information here
   };
 
-  useEffect(() => {
-
-    // Get cart data when component mounts
-    const cartData = localStorage.getItem("shopping_cart");
-    if (cartData) {
-      setCartItems(JSON.parse(cartData));
-    }
-
+  useEffect(() => {    
     // sets user
     supabase.auth.onAuthStateChange((event, session) => {
       console.log(session);
@@ -73,15 +66,25 @@ const Cart = () => {
       <div className="cart-sections">
         <div className="cart-tile">
           <h2>Shopping Cart</h2>
-          {(cartItems || []).map((item) => (
-            <div className="cart-item shopping-cart-row" key={item.id}>
-              <div className="cart-item-name">{item.name}</div>
-              <div>{`$${item.disc_price}`}</div>
-              <div className="cart-item-remove" onClick={() => removeItem(item.id)}>
-                X
-              </div>
-            </div>
-          ))}
+
+          {cartItems ? (
+                      <div>
+                          {cartItems.map((item) => {
+                              <div className="cart-item shopping-cart-row" key={item.id}>
+                                  <div className="cart-item-name">{item.product_name}</div>
+                                  <div>{`$${item.price}`}</div>
+                                  {/* STYLE THIS */}
+                                  <div> - </div>
+                                  <div className="cart-item-quantity">{item.quantity}</div>
+                                  <div> + </div>
+                                  <div className="cart-item-remove" onClick={() => removeItem(item.id)}>
+                                        X
+                                  </div>
+                              </div>
+                          })}
+                      </div>
+                  ) : null}
+
           <div className="cart-total">Total: ${totalPrice.toFixed(2)}</div>
         </div>
         <div className="payment-tile">
