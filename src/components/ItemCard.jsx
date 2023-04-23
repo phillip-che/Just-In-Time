@@ -33,7 +33,7 @@ const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_pe
     }
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, borderRadius:'15px' }}>
             <CardMedia
                 sx={{ height: 140 }}
                 image={img}
