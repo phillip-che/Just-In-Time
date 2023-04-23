@@ -6,14 +6,6 @@ import "../styles/Login.css"
 
 const Login = () => {
 
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      // if(event ==="SIGNED_IN") {
-      //   window.location = "/";
-      // }
-    })
-  }, []);
-
   return (
     <div className="login-container">
       <Auth
