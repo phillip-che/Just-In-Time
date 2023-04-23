@@ -106,7 +106,7 @@ const ItemList = () => {
     return (
         <div>
             <div className="search-bar">
-                <FullWidthTextField searchItems={searchItems} />      
+                <FullWidthTextField searchItems={searchItems} />
             </div> 
             <div className="store-wallpaper">
                 {stores.filter(sto => sto.name===params.storeName).map((s) => (
