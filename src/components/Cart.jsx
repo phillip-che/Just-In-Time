@@ -29,20 +29,19 @@ const Cart = () => {
       console.log(session);
       if (session) {
         setUser(session.user);
+        const getCartItems = async () => {
+            await supabase
+              .from('Carts')
+              .select()
+              .eq('user_id', session.user.id)
+              .then((response) => {
+                console.log(response.data);
+                setCartItems(response.data);
+              });
+          }
+          getCartItems();
       }
-    })
-
-    const getCartItems = async () => {
-      await supabase
-        .from('Carts')
-        .select()
-        .eq('user_id', user.id)
-        .then((response) => {
-          console.log(response.data);
-          setCartItems(response.data);
-        });
-    }
-    getCartItems();
+    });
   }, []);
 
   const totalPrice = (cartItems || []).reduce((acc, item) => acc + item.disc_price, 0);
@@ -69,7 +68,7 @@ const Cart = () => {
 
           {cartItems ? (
                       <div>
-                          {cartItems.map((item) => {
+                          {cartItems.map((item) => (
                               <div className="cart-item shopping-cart-row" key={item.id}>
                                   <div className="cart-item-name">{item.product_name}</div>
                                   <div>{`$${item.price}`}</div>
@@ -81,7 +80,7 @@ const Cart = () => {
                                         X
                                   </div>
                               </div>
-                          })}
+                          ))}
                       </div>
                   ) : null}
 
