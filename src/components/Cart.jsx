@@ -102,6 +102,7 @@ const Cart = () => {
       .then((error) => {
         console.log(error);
         setCartItems(cartItems.filter((item) => item.product_id !== id));
+        location.reload();
       })
   }
 
