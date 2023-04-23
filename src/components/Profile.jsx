@@ -51,8 +51,8 @@ const Profile = () => {
     const [showCreditCard, setShowCreditCard] = useState(false);
     const [showSecurityCode, setShowSecurityCode] = useState(false);
     const [card, setCard] = useState({
-        number: null,
-        cvv: null,
+        number: "",
+        cvv: "",
         exp: ""
     });
 
@@ -66,6 +66,7 @@ const Profile = () => {
 
     const saveAddress = async () => {
         await supabase
+<<<<<<< HEAD
             .from('Address')
             .insert({ user: user.id, address: address.addressLine, city: address.city, state: address.state, zip: address.zip })
             .select()
@@ -73,10 +74,21 @@ const Profile = () => {
                 console.log(response);
                 location.reload();
             })
+=======
+        .from('Address')
+        .insert({user: user.id, address: address.addressLine, city: address.city, state: address.state, zip: address.zip})
+        .select()
+        .then((response) => {
+            console.log(response);
+            window.alert("Address saved.")
+            // location.reload();
+        })
+>>>>>>> refs/remotes/origin/main
     };
 
     const savePayment = async () => {
         await supabase
+<<<<<<< HEAD
             .from('PaymentInfo')
             .insert({ user: user.id, card_number: card.number, exp_date: card.exp, cvv: card.cvv })
             .select()
@@ -84,6 +96,36 @@ const Profile = () => {
                 console.log(response);
                 location.reload();
             })
+=======
+        .from('PaymentInfo')
+        .insert({user: user.id, card_number: card.number, exp_date: card.exp, cvv: card.cvv})
+        .select()
+        .then((response) => {
+            console.log(response);
+            window.alert("Payment saved.")
+            // location.reload();
+        })
+>>>>>>> refs/remotes/origin/main
+    }
+
+    const onChangeCard = (event) => {
+        console.log(event.target.name + ": " + event.target.value);
+        setCard((prev) => {
+            return {
+              ...prev,
+              [event.target.name]: event.target.value,
+            };
+          });
+    }
+
+    const onChangeAddress = (event) => {
+        console.log(event.target.name + ": " + event.target.value);
+        setAddress((prev) => {
+            return {
+              ...prev,
+              [event.target.name]: event.target.value,
+            };
+          });
     }
 
     const handleCreditCardToggle = () => {
@@ -122,9 +164,9 @@ const Profile = () => {
                         <div className="input-group">
                             <input
                                 type={showCreditCard ? "text" : "password"}
-                                name="creditCard"
+                                name="number"
                                 value={card.number}
-                                onChange={(e) => setCard({ number: e.target.value })}
+                                onChange={onChangeCard}
                                 placeholder="************1234"
                             />
                             <div className="icon-group" onClick={handleCreditCardToggle}>
@@ -137,9 +179,9 @@ const Profile = () => {
                         <div className="input-group">
                             <input
                                 type={showSecurityCode ? "text" : "password"}
-                                name="securityCode"
+                                name="cvv"
                                 value={card.cvv}
-                                onChange={(e) => setCard({ cvv: e.target.value })}
+                                onChange={onChangeCard}
                                 placeholder="123"
                             />
                             <div className="icon-group" onClick={handleSecurityCodeToggle}>
@@ -151,10 +193,10 @@ const Profile = () => {
                         <label htmlFor="expirationDate">Expiration Date</label>
                         <div className="input-group">
                             <input
-                                name="expirationDate"
+                                name="exp"
                                 value={card.exp}
-                                onChange={(e) => setCard({ exp: e.target.value })}
-                                placeholder="07/02/25"
+                                onChange={onChangeCard}
+                                placeholder="07/25"
                             />
                         </div>
                     </div>
@@ -167,31 +209,31 @@ const Profile = () => {
                     <div className="form-field" style={{ marginTop: "2vh" }}>
                         <label htmlFor="name">Name</label>
                         <div className="input-group">
-                            <input type="text" name="name" placeholder="John Doe" onChange={(e) => setAddress({ name: e.target.value })} />
+                            <input type="text" name="name" placeholder="John Doe" onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="address">Address</label>
                         <div className="input-group">
-                            <input type="text" name="address" placeholder="123 Main St." onChange={(e) => setAddress({ addressLine: e.target.value })} />
+                            <input type="text" name="addressLine" placeholder="123 Main St." onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="city">City</label>
                         <div className="input-group">
-                            <input type="text" name="city" placeholder="Anytown" onChange={(e) => setAddress({ city: e.target.value })} />
+                            <input type="text" name="city" placeholder="Anytown" onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="state">State</label>
                         <div className="input-group">
-                            <input type="text" name="state" placeholder="CA" onChange={(e) => setAddress({ state: e.target.value })} />
+                            <input type="text" name="state" placeholder="CA" onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="zip">Zip Code</label>
                         <div className="input-group">
-                            <input type="text" name="zip" placeholder="12345" onChange={(e) => setAddress({ zip: e.target.value })} />
+                            <input type="text" name="zip" placeholder="12345" onChanonChange={onChangeAddress}/>
                         </div>
                     </div>
                     <div className="button-group">
