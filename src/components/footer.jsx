@@ -10,7 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/phillip-che/Just-In-Time">
-        Just in time.
+        Just in time
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
