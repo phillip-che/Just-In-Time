@@ -17,6 +17,11 @@ const NavBar = () => {
     })
   }, []);
 
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    setLoggedIn(false);
+  }
+
 
   return (
     <nav className="navbar">
@@ -33,13 +38,17 @@ const NavBar = () => {
               Login
             </div>
           </Link>
-          ) : <Link to="/profile">
+          ) : (<button className="btn-login" onClick={signOut} >Log Out</button>)}
+          <Link to="/profile">
             <div className="btn-login">
               Profile
             </div>
+<<<<<<< HEAD
           </Link>}
           <Link to='/cart'>
             <ShoppingCartIcon/>
+=======
+>>>>>>> f108276b32b50ec26c020de1944748732e7117c9
           </Link>
         </div>
       </div>

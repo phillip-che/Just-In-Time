@@ -73,7 +73,7 @@ const Profile = () => {
             <div className="payment-address-info-container">
                 <div className="payment-info-card">
                     <h2>Payment Info</h2>
-                    <div className="form-field">
+                    <div className="form-field" style={{marginTop: "2vh"}}>
                         <label htmlFor="creditCard">Credit Card</label>
                         <div className="input-group">
                             <input
@@ -120,7 +120,7 @@ const Profile = () => {
                 </div>
                 <div className="address-info-card">
                     <h2>Address Info</h2>
-                    <div className="form-field">
+                    <div className="form-field" style={{marginTop: "2vh"}}>
                         <label htmlFor="name">Name</label>
                         <div className="input-group">
                             <input type="text" name="name" placeholder="John Doe" onChange={(e) => setAddress({name: e.target.value})} />
