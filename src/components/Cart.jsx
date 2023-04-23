@@ -13,11 +13,35 @@ const Cart = () => {
     }
   })
 
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
-
   const totalPrice = cartItems.reduce((acc, item) => acc + item.disc_price, 0);
+
+    useEffect(() => {
+        const getCartItems = async () => {
+            await supabase
+            .from('Carts')
+            .select()
+            .eq('user_id', user.id)
+            .then((response) => {
+                console.log(response.data);
+                setCartItems(response.data);
+            });
+        }
+        getCartItems();
+    }, []);
+    
+    const onCheckout = () => {
+        
+    }
+
+    const removeItem = async (id) => {
+        await supabase
+        .from('Carts')
+        .delete()
+        .eq('product_id', id)
+        .then({response, error} = () => {
+            setCartItems(cartItems.filter((item) => item.id !== id));
+        })
+    }
 
   return (
     <div className="cart-container">
@@ -45,7 +69,6 @@ const Cart = () => {
         </div>
       </div>
     </div>
-  );
-};
-
+  )
+}
 export default Cart;
