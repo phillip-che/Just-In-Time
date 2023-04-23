@@ -21,8 +21,8 @@ const Profile = () => {
     const [showCreditCard, setShowCreditCard] = useState(false);
     const [showSecurityCode, setShowSecurityCode] = useState(false);
     const [card, setCard] = useState({
-        number: 0,
-        cvv: 0,
+        number: "",
+        cvv: "",
         exp: ""
     });
 
@@ -41,7 +41,8 @@ const Profile = () => {
         .select()
         .then((response) => {
             console.log(response);
-            location.reload();
+            window.alert("Address saved.")
+            // location.reload();
         })
     };
 
@@ -52,8 +53,19 @@ const Profile = () => {
         .select()
         .then((response) => {
             console.log(response);
-            location.reload();
+            window.alert("Payment saved.")
+            // location.reload();
         })
+    }
+
+    const onChange = (event) => {
+        console.log(event.target.name + ": " + event.target.value);
+        setCard((prev) => {
+            return {
+              ...prev,
+              [event.target.name]: event.target.value,
+            };
+          });
     }
 
     const handleCreditCardToggle = () => {
@@ -78,9 +90,9 @@ const Profile = () => {
                         <div className="input-group">
                             <input
                                 type={showCreditCard ? "text" : "password"}
-                                name="creditCard"
+                                name="number"
                                 value={card.number}
-                                onChange={(e) => setCard({number: e.target.value})}
+                                onChange={onChange}
                                 placeholder="************1234"
                             />
                             <div className="icon-group" onClick={handleCreditCardToggle}>
@@ -93,9 +105,9 @@ const Profile = () => {
                         <div className="input-group">
                             <input
                                 type={showSecurityCode ? "text" : "password"}
-                                name="securityCode"
+                                name="cvv"
                                 value={card.cvv}
-                                onChange={(e) => setCard({cvv: e.target.value})}
+                                onChange={onChange}
                                 placeholder="123"
                             />
                             <div className="icon-group" onClick={handleSecurityCodeToggle}>
@@ -107,10 +119,10 @@ const Profile = () => {
                         <label htmlFor="expirationDate">Expiration Date</label>
                         <div className="input-group">
                             <input
-                                name="expirationDate"
+                                name="exp"
                                 value={card.exp}
-                                onChange={(e) => setCard({exp: e.target.value})}
-                                placeholder="07/02/25"
+                                onChange={onChange}
+                                placeholder="07/25"
                             />
                         </div>
                     </div>
