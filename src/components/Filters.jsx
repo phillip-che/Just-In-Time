@@ -1,4 +1,4 @@
-const Filters = ({setItemList}) => {
+const Filters = ({onDiscountFilter, onPriceFilter, onExpFilter}) => {
 
     return (
         <div>

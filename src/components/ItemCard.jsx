@@ -11,6 +11,13 @@ const ItemCard = ({ productID, storeName, name, price, disc_price, disc_percent,
     const lsCartName = "shopping_cart";
 
     const addToCart = () => {
+        
+        // const storeCart = async () => {
+        //     await supabase
+        //     .from('Carts')
+        //     .insert({user_id: user.id, product_id: params.productID, quantity: quantity, price: disc_price})
+        // }
+        // storeCart();
         let new_product = {id: productID, name: name, price: price, disc_price: disc_price};
 
         if (localStorage.getItem(lsCartName) === null) {

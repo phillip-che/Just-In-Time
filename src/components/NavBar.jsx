@@ -15,12 +15,12 @@ const NavBar = () => {
       <div class="navbar-buttons">
       <Link to='/cart'>
         <div className="btn-cart">
-            <HiShoppingCart/> CART
+            <HiShoppingCart/> Cart
         </div>
       </Link>
       <Link to='/login'>
         <div className="btn-login">
-            LOGIN
+            Login
         </div>
       </Link>
       </div>

@@ -2,10 +2,11 @@ import "../styles/Profile.css"
 import { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { FaCreditCard } from "react-icons/fa";
+import { useParams } from "react-router";
 
 const Profile = () => {
 
-    let [user, setUser] = useState("");
+    const [user, setUser] = useState("");
 
     useEffect(() => {
         // sets user
@@ -15,13 +16,32 @@ const Profile = () => {
                 setUser(session.user);
             }
         })
-    }, [])
+    }, []);
 
     const [creditCard, setCreditCard] = useState("");
     const [showCreditCard, setShowCreditCard] = useState(false);
     const [securityCode, setSecurityCode] = useState("");
     const [showSecurityCode, setShowSecurityCode] = useState(false);
     const [expirationDate, setExpirationDate] = useState("");
+
+    const [address, setAddress] = useState({
+        name: "",
+        addressLine: "",
+        city: "", 
+        state: "",
+        zip: ""
+    });
+
+    const saveAddress = async () => {
+        await supabase
+        .from('Address')
+        .insert({user: user.id, address: address.addressLine, city: address.city, state: address.state, zip: address.zip})
+        .select()
+        .then((response) => {
+            console.log(response);
+            location.reload();
+        })
+    };
 
     const handleCreditCardToggle = () => {
         setShowCreditCard(!showCreditCard);
@@ -90,35 +110,35 @@ const Profile = () => {
                     <div className="form-field">
                         <label htmlFor="name">Name</label>
                         <div className="input-group">
-                            <input type="text" name="name" placeholder="John Doe" />
+                            <input type="text" name="name" placeholder="John Doe" onChange={(e) => setAddress({name: e.target.value})} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="address">Address</label>
                         <div className="input-group">
-                            <input type="text" name="address" placeholder="123 Main St." />
+                            <input type="text" name="address" placeholder="123 Main St." onChange={(e) => setAddress({addressLine: e.target.value})} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="city">City</label>
                         <div className="input-group">
-                            <input type="text" name="city" placeholder="Anytown" />
+                            <input type="text" name="city" placeholder="Anytown" onChange={(e) => setAddress({city: e.target.value})} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="state">State</label>
                         <div className="input-group">
-                            <input type="text" name="state" placeholder="CA" />
+                            <input type="text" name="state" placeholder="CA" onChange={(e) => setAddress({state: e.target.value})} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="zip">Zip Code</label>
                         <div className="input-group">
-                            <input type="text" name="zip" placeholder="12345" />
+                            <input type="text" name="zip" placeholder="12345" onChange={(e) => setAddress({zip: e.target.value})}/>
                         </div>
                     </div>
                     <div className="button-group">
-                        <button className="update-button">Update</button>
+                        <button className="update-button" onClick={saveAddress} >Update</button>
                     </div>
                 </div>
             </div>

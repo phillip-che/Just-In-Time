@@ -59,7 +59,7 @@ const ItemList = () => {
     return (
         <div>
             <div className="filters">
-                <Filters />
+                <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
             </div>
             {itemList ? (
                 <div className="item-list">
