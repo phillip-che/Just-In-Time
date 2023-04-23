@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { supabase } from "../client";
 import '../styles/Confirmation.css';
 
 const Confirmation = () => {
@@ -32,6 +33,7 @@ const Confirmation = () => {
 
     return (
         <div className="confirmation-page">
+            {order ? (
             <div className="confirmation-header"> 
                 <h1>#{params.orderID}</h1>
                 <h2> 
@@ -42,6 +44,7 @@ const Confirmation = () => {
                 </h3>
                 {(selectedOption) ? (<h3> </h3>) : (<h3> </h3>)}    
             </div>
+            ) : null}
         </div>
     )
 }

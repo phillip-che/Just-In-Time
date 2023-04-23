@@ -58,9 +58,19 @@ const Profile = () => {
         })
     }
 
-    const onChange = (event) => {
+    const onChangeCard = (event) => {
         console.log(event.target.name + ": " + event.target.value);
         setCard((prev) => {
+            return {
+              ...prev,
+              [event.target.name]: event.target.value,
+            };
+          });
+    }
+
+    const onChangeAddress = (event) => {
+        console.log(event.target.name + ": " + event.target.value);
+        setAddress((prev) => {
             return {
               ...prev,
               [event.target.name]: event.target.value,
@@ -92,7 +102,7 @@ const Profile = () => {
                                 type={showCreditCard ? "text" : "password"}
                                 name="number"
                                 value={card.number}
-                                onChange={onChange}
+                                onChange={onChangeCard}
                                 placeholder="************1234"
                             />
                             <div className="icon-group" onClick={handleCreditCardToggle}>
@@ -107,7 +117,7 @@ const Profile = () => {
                                 type={showSecurityCode ? "text" : "password"}
                                 name="cvv"
                                 value={card.cvv}
-                                onChange={onChange}
+                                onChange={onChangeCard}
                                 placeholder="123"
                             />
                             <div className="icon-group" onClick={handleSecurityCodeToggle}>
@@ -121,7 +131,7 @@ const Profile = () => {
                             <input
                                 name="exp"
                                 value={card.exp}
-                                onChange={onChange}
+                                onChange={onChangeCard}
                                 placeholder="07/25"
                             />
                         </div>
@@ -135,31 +145,31 @@ const Profile = () => {
                     <div className="form-field" style={{marginTop: "2vh"}}>
                         <label htmlFor="name">Name</label>
                         <div className="input-group">
-                            <input type="text" name="name" placeholder="John Doe" onChange={(e) => setAddress({name: e.target.value})} />
+                            <input type="text" name="name" placeholder="John Doe" onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="address">Address</label>
                         <div className="input-group">
-                            <input type="text" name="address" placeholder="123 Main St." onChange={(e) => setAddress({addressLine: e.target.value})} />
+                            <input type="text" name="addressLine" placeholder="123 Main St." onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="city">City</label>
                         <div className="input-group">
-                            <input type="text" name="city" placeholder="Anytown" onChange={(e) => setAddress({city: e.target.value})} />
+                            <input type="text" name="city" placeholder="Anytown" onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="state">State</label>
                         <div className="input-group">
-                            <input type="text" name="state" placeholder="CA" onChange={(e) => setAddress({state: e.target.value})} />
+                            <input type="text" name="state" placeholder="CA" onChange={onChangeAddress} />
                         </div>
                     </div>
                     <div className="form-field">
                         <label htmlFor="zip">Zip Code</label>
                         <div className="input-group">
-                            <input type="text" name="zip" placeholder="12345" onChange={(e) => setAddress({zip: e.target.value})}/>
+                            <input type="text" name="zip" placeholder="12345" onChanonChange={onChangeAddress}/>
                         </div>
                     </div>
                     <div className="button-group">
