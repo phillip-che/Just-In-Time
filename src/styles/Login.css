@@ -23,11 +23,11 @@
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 26px;
     font-weight: 500;
     background-color: #F7F7F7;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
+    color: gray;
 }
 
 .login-input:focus {
@@ -36,25 +36,28 @@
 }
 
 .login-input::placeholder {
+    font-family: 'Futura';
     color: #ccc;
 }
 
 .login-label {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 600;
     color: #fff;
     margin-bottom: 10px;
     display: block;
+    font-family: 'Futura';
 }
 
 .login-submit-button {
     background-color: #e75e5e;
     color: #fff;
     border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+    border-radius: 12px;
+    padding: 12px 30px;
+    margin-bottom: 10px;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }

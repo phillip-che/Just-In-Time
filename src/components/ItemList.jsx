@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { supabase } from "../client";
-import Filters from "./Filters";
+import BasicSelect from "./Select.jsx";
 import ItemCard from "./ItemCard";
 import '../styles/ItemList.css'
 import FullWidthTextField from "./SearchBar";
@@ -108,6 +108,9 @@ const ItemList = () => {
             <div className="search-bar">
                 <FullWidthTextField searchItems={searchItems} />      
             </div> 
+            <div className="filter">
+                <BasicSelect onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
+            </div>
             <div className="store-wallpaper">
                 {stores.filter(sto => sto.name===params.storeName).map((s) => (
                     // if (s.name === params.storeName) {
@@ -119,9 +122,6 @@ const ItemList = () => {
                 }
             </div>
             <div className="product-page">
-                <div className="filters">
-                    <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
-                </div>
                 {itemList ? (
                     <div className="item-list">
                         {itemList.map((item) =>
