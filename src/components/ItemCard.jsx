@@ -13,15 +13,13 @@ const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_pe
     const [quantity, setQuantity] = useState(1);
 
     const addToCart = async () => {
-
         await supabase
         .from('Carts')
         .select()
-        .where('user_id', user.id)
-        .where('product_id', productID)
-        .then((response) => {
+        .eq('product_id', productID)
+        .eq('user_id', user.id)
+        .then(({response, error}) => {
             console.log(response);
-            console.log(response.data);
             if(response) {
                 const updateCart = async () => {
                     await supabase
@@ -42,6 +40,7 @@ const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_pe
                     .select()
                     .then((response) => {
                         console.log(response);
+                        location.reload();
                     })
                 }
                 insertToCart();   

@@ -106,7 +106,7 @@ const ItemList = () => {
     return (
         <div>
             <div className="search-bar">
-                <FullWidthTextField searchItems={searchItems} />      
+                <FullWidthTextField searchItems={searchItems} />
             </div> 
             <div className="filter">
                 <BasicSelect onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />

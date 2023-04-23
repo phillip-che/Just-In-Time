@@ -16,8 +16,7 @@ const Cart = () => {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
 
-
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const [cartTotal, setCartTotal] = useState(0);
 
   const [selectedOption, setSelectedOption] = useState(null);
@@ -89,7 +88,7 @@ const Cart = () => {
     }
   }, [cartItems]);
 
-  const onCheckout = () => {
+  const placeOrder = () => {
 
   }
 
@@ -103,6 +102,7 @@ const Cart = () => {
       .then((error) => {
         console.log(error);
         setCartItems(cartItems.filter((item) => item.product_id !== id));
+        location.reload();
       })
   }
 
@@ -164,7 +164,7 @@ const Cart = () => {
               <label htmlFor="cvv">CVV:</label>
               <input type="text" id="cvv" value={cvv} onChange={(e) => setCvv(e.target.value)} />
 
-              <button type="submit">Submit Payment</button>
+              <button type="submit">Place Order</button>
             </form>
           </div>
           <div className="delivery-tile">
