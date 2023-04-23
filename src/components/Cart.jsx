@@ -64,14 +64,16 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-    const getCartTotal = () => {
-      let sum = 0;
-      cartItems.forEach((item) => {
-        sum += (item.price * item.quantity);
-      })
-      setCartTotal(sum.toFixed(2));
+    if(cartItems.length > 0) {
+      const getCartTotal = () => {
+        let sum = 0;
+        cartItems.forEach((item) => {
+          sum += (item.price * item.quantity);
+        })
+        setCartTotal(sum.toFixed(2));
+      }
+      getCartTotal();
     }
-    getCartTotal();
   }, [cartItems])
 
   const onCheckout = () => {
@@ -79,13 +81,15 @@ const Cart = () => {
   }
 
   const removeItem = async (id) => {
+    console.log("deleting... user: " + user.id + "product: " + id); 
     await supabase
       .from('Carts')
       .delete()
+      .eq('user_id', user.id)
       .eq('product_id', id)
       .then((error) => {
         console.log(error);
-        setCartItems(cartItems.filter((item) => item.id !== id));
+        setCartItems(cartItems.filter((item) => item.product_id !== id));
       })
   }
 
@@ -122,7 +126,7 @@ const Cart = () => {
                     <button onClick={() => changeQuantity(item, index, -1)}> - </button>
                     <span className="cart-item-quantity">{item.quantity}</span>
                     <button onClick={() => changeQuantity(item, index, 1)}> + </button>
-                    <button className="cart-item-remove" onClick={() => removeItem(item.id)}>
+                    <button className="cart-item-remove" onClick={() => removeItem(item.product_id)}>
                       X
                     </button>
                   </span>
