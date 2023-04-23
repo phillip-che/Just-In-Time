@@ -24,12 +24,12 @@ const Confirmation = () => {
         getOrder();
     })
 
-    useEffect(() => {
-        const storedState = localStorage.getItem("selectedOption");
-        if (storedState) {
-          setSelectedOption(JSON.parse(selectedOption));
-        }
-      }, []);
+    // useEffect(() => {
+    //     const storedState = localStorage.getItem("selectedOption");
+    //     if (storedState) {
+    //       setSelectedOption(JSON.parse(selectedOption));
+    //     }
+    //   }, []);
 
     return (
         <div className="confirmation-page">

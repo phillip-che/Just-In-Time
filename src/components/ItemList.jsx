@@ -122,7 +122,26 @@ const ItemList = () => {
                 }
             </div>
             <div className="product-page">
-                {itemList ? (
+                {searchValue.length > 0 ? (
+                    <div className="item-list">
+                        {filteredList.map((item) =>
+                            <ItemCard
+                                user={user}
+                                productID={item.id}
+                                storeName={item.store_name}
+                                name={item.name}
+                                price={item.price}
+                                disc_price={item.disc_price}
+                                disc_percent={item.disc_percent}
+                                exp={item.exp}
+                                img={item.img_url}
+                                key={item.store_name + item.id}
+                            />
+                        )}
+                    </div>
+                ) : (
+                <div>
+                    {itemList ? (
                     <div className="item-list">
                         {itemList.map((item) =>
                             <ItemCard
@@ -139,7 +158,8 @@ const ItemList = () => {
                             />
                         )}
                     </div>
-                ) : <p>No products yet lol rip</p>}
+                ) : <p>No products</p>}
+                </div>)}
             </div>
         </div>
     )
