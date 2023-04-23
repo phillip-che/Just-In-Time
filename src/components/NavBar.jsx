@@ -43,7 +43,7 @@ const NavBar = () => {
               Login
             </div>
           </Link>
-          ) : (<button className="btn-login" onClick={signOut} >Log Out</button>)}
+          ) : (<button className="log-out" onClick={signOut} >Log Out</button>)}
           <Link to='/cart'>
             <ShoppingCartIcon/>
           </Link>

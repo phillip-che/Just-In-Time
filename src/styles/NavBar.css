@@ -70,10 +70,22 @@
   cursor: pointer;
   font-family: "Futura";
   margin-right: 12px;
-
+  background-color: white;
 }
 
-.btn-login:hover{
+.log-out {
+  color: #F9B1B1;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Futura";
+  margin-right: 12px;
+  background-color: white;
+}
+
+.btn-login:hover, .log-out:hover{
   background-color: rgb(244, 244, 244);
 }
 
