@@ -12,7 +12,7 @@ export default function FullWidthTextField({ searchItems }) {
     >
       <TextField onChange={(input) => searchItems(input.target.value)} fullWidth label="Search" id="fullWidth" sx={{
           '& .MuiInputBase-input': {
-            height: '14px', // adjust the height here
+            height: '14px', fontFamily:'Futura',// adjust the height here
           },
         }} />
     </Box>
