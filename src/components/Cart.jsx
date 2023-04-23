@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../client";
 import "../styles/Cart.css";
+import { v4 as uuidv4 } from 'uuid';
 
 const Cart = () => {
 
@@ -17,11 +18,17 @@ const Cart = () => {
   const [zipCode, setZipCode] = useState("");
 
   const [user, setUser] = useState(null);
+
   const [cartTotal, setCartTotal] = useState(0);
 
   const [selectedOption, setSelectedOption] = useState(null);
 
   const [reload, setReload] = useState(false);
+
+  const [orderID, setOrderID] = useState(uuidv4());
+  const [payment, setPayment] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [pickupTime, setPickupTime] = useState("");
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -57,8 +64,30 @@ const Cart = () => {
               getCartTotal();
             });
         }
+        const getPayment = async () => {
+          await supabase
+          .from('PaymentInfo')
+          .select()
+          .eq('user', session.user.id)
+          .then((response) => {
+              console.log("Payment: " + response.data);
+              setPayment(response.data);
+          })
+        }
+        const getAddress = async () => {
+            await supabase
+            .from('Address')
+            .select()
+            .eq('user', session.user.id)
+            .then((response) => {
+                console.log("Address: " + response.data);
+                setAddress(response.data);
+            })
+        }
+        getAddress();
+        getPayment();
         getCartItems();
-      }
+        }
     });
   }, []);
 
@@ -88,8 +117,21 @@ const Cart = () => {
     }
   }, [cartItems]);
 
-  const placeOrder = () => {
+  const storeOrder = async (item) => {
+    await supabase
+    .from('Orders')
+    .insert({order_id: orderID, user_id: user.id, payment_id: payment.id, address_id: address.id, product_id: item.product_id, 
+      product_name: item.name, quantity: item.quantity, order_total: cartTotal})
+    .select()
+    .then((response) => {
+      console.log(response)
+    })
+  }
 
+  const placeOrder = () => {
+    cartItems.forEach((item) => {
+      storeOrder(item)
+    });
   }
 
   const removeItem = async (id) => {
@@ -156,10 +198,10 @@ const Cart = () => {
             <h2 className="tile-header">Payment</h2>
             <form className="payment-form" onSubmit={handleSubmit}>
               <label htmlFor="cardNumber">Card Number:</label>
-              <input type="text" id="cardNumber" value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} />
+              <input type="text" id="cardNumber" value={(payment ? (payment.card_number) : "")} onChange={(e) => setCardNumber(e.target.value)} />
 
               <label htmlFor="expiryDate">Expiry Date:</label>
-              <input type="text" id="expiryDate" value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} />
+              <input type="text" id="expiryDate" value={(payment ? (payment.cvv) : "")} onChange={(e) => setExpiryDate(e.target.value)} />
 
               <label htmlFor="cvv">CVV:</label>
               <input type="text" id="cvv" value={cvv} onChange={(e) => setCvv(e.target.value)} />
