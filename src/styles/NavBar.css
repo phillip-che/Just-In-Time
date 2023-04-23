@@ -48,10 +48,11 @@
   background-color: #F9B1B1;
   color: white;
   border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 20px;
-  margin-right: 0.5rem;
   cursor: pointer;
   vertical-align: middle;
 }
@@ -61,18 +62,31 @@
 }
 
 .btn-login {
-  background-color: #F9B1B1;
-  color: white;
+  color: #F9B1B1;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 10px 30px;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Futura";
+  margin-right: 12px;
+  background-color: white;
+}
+
+.log-out {
+  color: #F9B1B1;
+  border: none;
+  border-radius: 8px;
   padding: 10px 20px;
   font-size: 20px;
   cursor: pointer;
-  margin-right: 1vh;
+  font-family: "Futura";
+  margin-right: 12px;
+  background-color: white;
 }
 
-.btn-login:hover{
-  box-shadow: 0 0 10px pink;
+.btn-login:hover, .log-out:hover{
+  background-color: rgb(244, 244, 244);
 }
 
 .island {

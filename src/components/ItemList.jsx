@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { supabase } from "../client";
-import Filters from "./Filters";
+import BasicSelect from "./Select.jsx";
 import ItemCard from "./ItemCard";
 import '../styles/ItemList.css'
 import FullWidthTextField from "./SearchBar";
@@ -10,6 +10,9 @@ const ItemList = () => {
 
     const [itemList, setItemList] = useState([]);
     const [user, setUser] = useState(null);
+    const [searchValue, setSearchValue] = useState("");
+    const [filteredList, setFilteredList] = useState([]);
+    
     let params = useParams();
 
     const [stores, setStores] = useState([]);
@@ -69,6 +72,26 @@ const ItemList = () => {
             });
     }
 
+    const searchItems = (searchInput) => {
+        setSearchValue(searchInput);
+        console.log(searchInput);
+
+        if (searchValue.length > 0) {
+            const filteredItems = Object.keys(itemList).filter(index => 
+              Object.values(itemList[index])
+                .join("")
+                .toLowerCase()
+                .includes(searchValue.toLowerCase())
+            );
+            const filteredData = [...new Set([...filteredItems])];
+            const searchList = [];
+            filteredData.forEach((item) => {
+                searchList.push(itemList[item])
+            });
+            setFilteredList(searchList);
+        }
+    }
+
     const onDiscountFilter = async () => {
         await supabase
             .from('Products')
@@ -83,7 +106,10 @@ const ItemList = () => {
     return (
         <div>
             <div className="search-bar">
-                <FullWidthTextField />
+                <FullWidthTextField searchItems={searchItems} />
+            </div> 
+            <div className="filter">
+                <BasicSelect onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
             </div>
             <div className="store-wallpaper">
                 {stores.filter(sto => sto.name===params.storeName).map((s) => (
@@ -96,9 +122,6 @@ const ItemList = () => {
                 }
             </div>
             <div className="product-page">
-                <div className="filters">
-                    <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
-                </div>
                 {itemList ? (
                     <div className="item-list">
                         {itemList.map((item) =>

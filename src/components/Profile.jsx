@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 
 const Profile = () => {
 
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         // sets user

@@ -1,6 +1,7 @@
 import StoreList from './components/StoreList'
 import { BsChevronDoubleDown } from 'react-icons/bs'
 import './App.css'
+import StickyFooter from './components/footer'
 
 function App() {
 
@@ -17,8 +18,6 @@ function App() {
       </div>
       <div className="store-list">
         <StoreList />
-      </div>
-      <div className="footer">
       </div>
     </div>
   )
