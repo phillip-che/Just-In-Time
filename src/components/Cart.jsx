@@ -163,8 +163,6 @@ const Cart = () => {
 
               <label htmlFor="cvv">CVV:</label>
               <input type="text" id="cvv" value={cvv} onChange={(e) => setCvv(e.target.value)} />
-
-              <button type="submit">Place Order</button>
             </form>
           </div>
           <div className="delivery-tile">
@@ -215,6 +213,8 @@ const Cart = () => {
               <br />
               {/* <label htmlFor="zipCode">Zip Code</label> */}
               <input type="text" placeholder="Zip Code" id="zipCode" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
+
+              <button type="submit">Place Order</button>
             </form>
           </div>
         </div>
