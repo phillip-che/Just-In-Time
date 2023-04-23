@@ -66,7 +66,6 @@ const Profile = () => {
 
     const saveAddress = async () => {
         await supabase
-<<<<<<< HEAD
             .from('Address')
             .insert({ user: user.id, address: address.addressLine, city: address.city, state: address.state, zip: address.zip })
             .select()
@@ -74,21 +73,10 @@ const Profile = () => {
                 console.log(response);
                 location.reload();
             })
-=======
-        .from('Address')
-        .insert({user: user.id, address: address.addressLine, city: address.city, state: address.state, zip: address.zip})
-        .select()
-        .then((response) => {
-            console.log(response);
-            window.alert("Address saved.")
-            // location.reload();
-        })
->>>>>>> refs/remotes/origin/main
     };
 
     const savePayment = async () => {
         await supabase
-<<<<<<< HEAD
             .from('PaymentInfo')
             .insert({ user: user.id, card_number: card.number, exp_date: card.exp, cvv: card.cvv })
             .select()
@@ -96,16 +84,6 @@ const Profile = () => {
                 console.log(response);
                 location.reload();
             })
-=======
-        .from('PaymentInfo')
-        .insert({user: user.id, card_number: card.number, exp_date: card.exp, cvv: card.cvv})
-        .select()
-        .then((response) => {
-            console.log(response);
-            window.alert("Payment saved.")
-            // location.reload();
-        })
->>>>>>> refs/remotes/origin/main
     }
 
     const onChangeCard = (event) => {
