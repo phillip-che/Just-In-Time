@@ -10,6 +10,9 @@ const ItemList = () => {
 
     const [itemList, setItemList] = useState([]);
     const [user, setUser] = useState(null);
+    const [searchValue, setSearchValue] = useState("");
+    const [filteredList, setFilteredList] = useState([]);
+    
     let params = useParams();
 
     useEffect(() => {
@@ -57,6 +60,13 @@ const ItemList = () => {
             });
     }
 
+    const searchItems = (searchInput) => {
+        console.log(searchInput);
+        
+        console.log(itemList.filter((item) => searchInput.join("").toLowerCase().includes(item.name.toLowerCase())));
+        // setFilteredList(itemList.filter(item => event.target.value === item.name));
+    }
+
     const onDiscountFilter = async () => {
         await supabase
             .from('Products')
@@ -71,7 +81,7 @@ const ItemList = () => {
     return (
         <div>
             <div className="search-bar">
-                <FullWidthTextField/>      
+                <FullWidthTextField searchItems={searchItems} />      
             </div>  
             <div className="store-wallpaper">
                 {params.storeName}
