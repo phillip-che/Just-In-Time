@@ -37,7 +37,7 @@ const ItemDetails = () => {
     const saveCart = async () => {
         await supabase
         .from('Carts')
-        .insert({user_id: user.id, product_id: params.productID, quantity: quantity, price: item.disc_price})
+        .insert({user_id: user.id, product_id: params.productID, product_name: item.name, quantity: quantity, price: item.disc_price})
     }
 
     const onIncrease = () => {
