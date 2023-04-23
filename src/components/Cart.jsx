@@ -39,7 +39,6 @@ const Cart = () => {
               .eq('user_id', session.user.id)
               .then((response) => {
                 console.log(response.data);
-                setCartItems(response.data);
                 const getCartTotal = () => {
                   let sum = 0;
                   response.data.forEach((item) => {
@@ -47,6 +46,7 @@ const Cart = () => {
                   })
                   setCartTotal(sum.toFixed(2));
                 }
+                setCartItems(response.data);
                 getCartTotal();
               });
           }
@@ -55,6 +55,16 @@ const Cart = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const getCartTotal = () => {
+      let sum = 0;
+      cartItems.forEach((item) => {
+        sum += (item.price * item.quantity);
+      })
+      setCartTotal(sum.toFixed(2));
+    }
+    getCartTotal();
+  }, [cartItems])
 
   const onCheckout = () => {
 
