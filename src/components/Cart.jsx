@@ -75,7 +75,8 @@ const Cart = () => {
       .from('Carts')
       .delete()
       .eq('product_id', id)
-      .then({ response, error } = () => {
+      .then((error) => {
+        console.log(error);
         setCartItems(cartItems.filter((item) => item.id !== id));
       })
   }
