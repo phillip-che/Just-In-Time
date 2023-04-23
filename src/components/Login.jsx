@@ -18,6 +18,7 @@ const Login = () => {
     <div className="login-container">
       <Auth
         supabaseClient={supabase}
+        providers={[]}
         appearance={{
           extend: false,
           variables: {
