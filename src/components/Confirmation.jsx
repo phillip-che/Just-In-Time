@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
+import '../styles/Confirmation.css';
 
 const Confirmation = () => {
 
@@ -30,8 +31,17 @@ const Confirmation = () => {
       }, []);
 
     return (
-        <div>
-            Confirmation Page for Order ID: {params.orderID}
+        <div className="confirmation-page">
+            <div className="confirmation-header"> 
+                <h1>#{params.orderID}</h1>
+                <h2> 
+                    Your Order Has Been Receieved!
+                </h2>
+                <h3>
+                    Total: ${order.order_total}
+                </h3>
+                {(selectedOption) ? (<h3> </h3>) : (<h3> </h3>)}    
+            </div>
         </div>
     )
 }

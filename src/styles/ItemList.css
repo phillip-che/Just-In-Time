@@ -45,7 +45,8 @@
 }
 
 .store-wallpaper img {
-    max-height: 20vh;
+    max-height: 30vh;
+    margin-bottom: 0vh;
     max-width: 100vh;
 }
 

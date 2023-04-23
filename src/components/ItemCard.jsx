@@ -59,17 +59,16 @@ const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_pe
     }
 
     return (
-        <Card sx={{ maxWidth: 345, borderRadius:'15px',
+        <Card sx={{ maxWidth: 345, borderRadius:'8px',
             boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.05)',
             transition: 'box-shadow 0.2s ease-in-out',
             '&:hover': {
             boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.15)'
             },
             filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12  ))',
-            borderRadius:'15px'
        }}>
             <CardMedia
-                sx={{ height: 140 }}
+                sx={{ height:140, }}
                 image={img}
                 title={name}
             />
@@ -78,12 +77,19 @@ const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_pe
                     {name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid', color: 'red' }}>${price}</span><span style={{ color: 'green' }}> ${disc_price} ({disc_percent}% off)</span>
+                    <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid', color: 'red', fontSize:'16px' }}>${price}</span><span style={{ color: 'green', fontSize:'15px' }}> ${disc_price} ({disc_percent}% off)</span>
                     <p>Expires {exp}</p>
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={addToCart}>Add to Cart</Button>
+                <Button onClick={addToCart}  sx={{
+            backgroundColor: 'white',
+            color: '#F9B1B1',
+            fontSize: '17px',
+            '&:hover': {
+                backgroundColor: 'rgb(244, 244, 244);',
+            },}}
+            >Add to Cart</Button>
             </CardActions>
         </Card>
     )
