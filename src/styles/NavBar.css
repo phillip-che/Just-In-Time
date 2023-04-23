@@ -56,6 +56,10 @@
   vertical-align: middle;
 }
 
+.btn-cart:hover{
+  box-shadow: 0 0 10px pink;
+}
+
 .btn-login {
   background-color: #F9B1B1;
   color: white;
@@ -64,6 +68,10 @@
   padding: 10px 20px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.btn-login:hover{
+  box-shadow: 0 0 10px pink;
 }
 
 .island {

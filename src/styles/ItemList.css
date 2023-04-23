@@ -1,5 +1,8 @@
 .product-page {
-    margin-top: 200px;
+    margin-top: 110px;
+    background-color: #F9B1B1;
+    padding-bottom: 20%;  
+    padding-top: 12px; 
 }
 .item-list {
     display: grid;
@@ -20,4 +23,21 @@
 .item-list {
     grid-template-columns: repeat(1, 1fr);
 }
+}
+
+.search-bar{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 36px;
+    z-index: 100000;
+} 
+
+.store-wallpaper {
+    margin-top: 140px;
+    line-height: 0;
+    font-size: 10rem;
+    color: #F9B1B1;
+    margin-bottom: 0;
 }

@@ -4,7 +4,7 @@ import { supabase } from "../client";
 import Filters from "./Filters";
 import ItemCard from "./ItemCard";
 import '../styles/ItemList.css'
-import SearchBar from "./SearchBar";
+import FullWidthTextField from "./SearchBar";
 
 const ItemList = () => {
 
@@ -69,10 +69,14 @@ const ItemList = () => {
     }
 
     return (
-        <div className="product-page">
-        <div className="store-banner">
-        </div>
-            <SearchBar/>
+        <div>
+            <div className="search-bar">
+                <FullWidthTextField/>      
+            </div>  
+            <div className="store-wallpaper">
+                {params.storeName}
+            </div>
+            <div className="product-page">
             <div className="filters">
                 <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
             </div>
@@ -94,6 +98,7 @@ const ItemList = () => {
                     )}
                 </div>
             ) : <p>No products yet lol rip</p>}
+            </div>
         </div>
     )
 }

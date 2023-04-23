@@ -1,25 +1,20 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import SearchIcon from '@mui/icons-material/Search';
 
-export default function SearchBar(props) {
-  const { onChange } = props;
-
-  const handleInputChange = (event) => {
-    onChange(event.target.value);
-  };
-
+export default function FullWidthTextField() {
   return (
-    <SearchBarContainer>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
-      <TextField
-        placeholder="Search"
-        onChange={handleInputChange}
-        variant="standard"
-      />
-    </SearchBarContainer>
+    <Box
+      sx={{
+        width: 500,
+        maxWidth: '100%',
+      }}
+    >
+      <TextField fullWidth label="Search" id="fullWidth" sx={{
+          '& .MuiInputBase-input': {
+            height: '14px', // adjust the height here
+          },
+        }} />
+    </Box>
   );
 }
