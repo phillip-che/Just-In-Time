@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../client";
-import { v4 as uuid4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 const Checkout = () => {
 
