@@ -21,8 +21,8 @@ const Profile = () => {
     const [showCreditCard, setShowCreditCard] = useState(false);
     const [showSecurityCode, setShowSecurityCode] = useState(false);
     const [card, setCard] = useState({
-        number: 0,
-        cvv: 0,
+        number: null,
+        cvv: null,
         exp: ""
     });
 
