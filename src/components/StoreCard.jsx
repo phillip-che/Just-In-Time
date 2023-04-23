@@ -14,14 +14,15 @@ export default function StoreCard({ storeLogo, storeName, storeAddr }) {
   }
 
   return (
-    <Card className="store-card" sx={{ 
+    <Card sx={{ 
       maxWidth: 345,
-      boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.10)',
+      boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.05)',
       transition: 'box-shadow 0.2s ease-in-out',
       '&:hover': {
-        boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.20)'
+        boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.15)'
       },
-      filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12  ))'
+      filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12  ))',
+      borderRadius:'15px'
     }}>
       <Link to={"/" + storeName + "/products"}>
         <CardActionArea>

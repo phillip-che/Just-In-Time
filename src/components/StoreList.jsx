@@ -21,7 +21,7 @@ const StoreList = () => {
     return (
         <div>
             {stores ? (
-                <div className="store-list" id="listid">
+                <div className="store-list">
                     {stores.map(store => (
                         <StoreCard
                             storeLogo={store.img}
