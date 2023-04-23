@@ -59,14 +59,13 @@ const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_pe
     }
 
     return (
-        <Card sx={{ maxWidth: 345, borderRadius:'15px',
+        <Card sx={{ maxWidth: 345, borderRadius:'8px',
             boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.05)',
             transition: 'box-shadow 0.2s ease-in-out',
             '&:hover': {
             boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.15)'
             },
             filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12  ))',
-            borderRadius:'15px'
        }}>
             <CardMedia
                 sx={{ height:140, }}
@@ -83,7 +82,14 @@ const ItemCard = ({ user, productID, storeName, name, price, disc_price, disc_pe
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button onClick={addToCart}  sx={{ backgroundColor: 'white', color: '#F9B1B1' }}>Add to Cart</Button>
+                <Button onClick={addToCart}  sx={{
+            backgroundColor: 'white',
+            color: '#F9B1B1',
+            fontSize: '17px',
+            '&:hover': {
+                backgroundColor: 'rgb(244, 244, 244);',
+            },}}
+            >Add to Cart</Button>
             </CardActions>
         </Card>
     )
