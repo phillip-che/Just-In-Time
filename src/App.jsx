@@ -5,7 +5,6 @@ import './App.css'
 function App() {
 
   return (
-    <>
       <div className="home-page">
         <div className="mission-statement"> 
             <h1 className="ms-body"> SUBSTAINABLE. <br/> AFFORDABLE. <br/> RELIABLE. <br/> </h1>
@@ -19,7 +18,6 @@ function App() {
           <div className="footer">
           </div>
       </div>
-    </>
   )
 }
 
