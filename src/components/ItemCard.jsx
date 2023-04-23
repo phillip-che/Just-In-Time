@@ -18,7 +18,13 @@ const ItemCard = ({ productID, storeName, name, price, disc_price, disc_percent,
             localStorage.setItem(lsCartName, cart);
         } else {
             let parsed_cart = JSON.parse(localStorage.getItem(lsCartName));
-            localStorage.setItem(lsCartName, JSON.stringify([...parsed_cart, new_product]));
+            
+            if(parsed_cart.find(obj => obj.id === productID) !== null){ // found it already
+                // Product is already in the cart and they keep pressing Add to Cart
+                // TODO: Manage quantities here
+            }else{
+                localStorage.setItem(lsCartName, JSON.stringify([...parsed_cart, new_product]));
+            }
         }
     }
 
