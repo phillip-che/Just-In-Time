@@ -31,6 +31,17 @@ const Cart = () => {
         
     }
 
+    const onRemove = async (event) => {
+        await supabase
+        .from('Carts')
+        .delete()
+        .eq('product_id', event.target.productID)
+        .then({response, error} = () => {
+            console.log(response);
+            console.log(error);
+        })
+    }
+
     return (
         <div>
             {/* some styling */}
