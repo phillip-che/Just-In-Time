@@ -12,6 +12,8 @@ const ItemList = () => {
     const [user, setUser] = useState(null);
     let params = useParams();
 
+    const [stores, setStores] = useState([]);
+
     useEffect(() => {
 
         supabase.auth.onAuthStateChange((event, session) => {
@@ -33,6 +35,16 @@ const ItemList = () => {
                 })
         }
         getItems();
+
+        const getStores = async () => {
+            await supabase
+                .from('Stores')
+                .select()
+                .then((response) => {
+                    setStores(response.data);
+                })
+        }
+        getStores();
     }, []);
 
     const onExpFilter = async () => {
@@ -71,33 +83,40 @@ const ItemList = () => {
     return (
         <div>
             <div className="search-bar">
-                <FullWidthTextField/>      
-            </div>  
+                <FullWidthTextField />
+            </div>
             <div className="store-wallpaper">
-                {params.storeName}
+                {stores.filter(sto => sto.name===params.storeName).map((s) => (
+                    // if (s.name === params.storeName) {
+                    <img className="store-logo" src={s.img}></img>
+                    // <p>Hi</p>
+                    // console.log(s.img)
+                    // }
+                ))
+                }
             </div>
             <div className="product-page">
-            <div className="filters">
-                <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
-            </div>
-            {itemList ? (
-                <div className="item-list">
-                    {itemList.map((item) => 
-                        <ItemCard
-                            user={user}
-                            productID={item.id}
-                            storeName={item.store_name}
-                            name={item.name}
-                            price={item.price}
-                            disc_price={item.disc_price}
-                            disc_percent={item.disc_percent}
-                            exp={item.exp}
-                            img={item.img_url}
-                            key={item.store_name+item.id}
-                        />
-                    )}
+                <div className="filters">
+                    <Filters onExpFilter={onExpFilter} onPriceFilter={onPriceFilter} onDiscountFilter={onDiscountFilter} />
                 </div>
-            ) : <p>No products yet lol rip</p>}
+                {itemList ? (
+                    <div className="item-list">
+                        {itemList.map((item) =>
+                            <ItemCard
+                                user={user}
+                                productID={item.id}
+                                storeName={item.store_name}
+                                name={item.name}
+                                price={item.price}
+                                disc_price={item.disc_price}
+                                disc_percent={item.disc_percent}
+                                exp={item.exp}
+                                img={item.img_url}
+                                key={item.store_name + item.id}
+                            />
+                        )}
+                    </div>
+                ) : <p>No products yet lol rip</p>}
             </div>
         </div>
     )
