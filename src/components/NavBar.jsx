@@ -33,22 +33,19 @@ const NavBar = () => {
           </div>
         </Link>
         <div class="navbar-buttons">
+          <Link to="/profile">
+            <div className="btn-login">
+              Profile
+            </div>
+          </Link>
           {!loggedIn ? (<Link to='/login'>
             <div className="btn-login">
               Login
             </div>
           </Link>
           ) : (<button className="btn-login" onClick={signOut} >Log Out</button>)}
-          <Link to="/profile">
-            <div className="btn-login">
-              Profile
-            </div>
-<<<<<<< HEAD
-          </Link>}
           <Link to='/cart'>
             <ShoppingCartIcon/>
-=======
->>>>>>> f108276b32b50ec26c020de1944748732e7117c9
           </Link>
         </div>
       </div>

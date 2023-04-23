@@ -64,7 +64,6 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-<<<<<<< HEAD
     return () => {
       localStorage.setItem("selectedOption", JSON.stringify(selectedOption));
     };
@@ -77,7 +76,7 @@ const Cart = () => {
         sum += (item.price * item.quantity);
       })
       setCartTotal(sum.toFixed(2));
-=======
+    }
     if(cartItems.length > 0) {
       const getCartTotal = () => {
         let sum = 0;
@@ -87,9 +86,8 @@ const Cart = () => {
         setCartTotal(sum.toFixed(2));
       }
       getCartTotal();
->>>>>>> f108276b32b50ec26c020de1944748732e7117c9
     }
-  }, [cartItems])
+  }, [cartItems]);
 
   const onCheckout = () => {
 
