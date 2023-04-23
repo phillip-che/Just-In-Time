@@ -34,7 +34,7 @@ const ItemDetails = () => {
         getItem();
     }, []);
 
-    const onATC = async () => {
+    const saveCart = async () => {
         await supabase
         .from('Carts')
         .insert({user_id: user.id, product_id: params.productID, quantity: quantity, price: item.disc_price})

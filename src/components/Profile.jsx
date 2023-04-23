@@ -15,7 +15,13 @@ const Profile = () => {
                 setUser(session.user);
             }
         })
-    }, [])
+    }, []);
+
+    // const saveAddress = async () => {
+    //     await supabase
+    //     .from('Address')
+    //     .insert()
+    // }
 
     const [creditCard, setCreditCard] = useState("");
     const [showCreditCard, setShowCreditCard] = useState(false);
