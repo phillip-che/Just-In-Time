@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 const Confirmation = () => {
 
     let params = useParams();
-    const [order, setOrder] = useState(null);
+    const [order, setOrder] = useState([]);
 
     useEffect(() => {
         const getOrder = async () =>  {
@@ -19,6 +19,8 @@ const Confirmation = () => {
         }
         getOrder();
     })
+
+    // order attributes = 
 
     return (
         <div>
