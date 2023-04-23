@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { supabase } from "../client";
 import '../styles/Confirmation.css';
+import dog from "../assets/dawg.jpg";
 
 const Confirmation = () => {
 
     let params = useParams();
-    const [order, setOrder] = useState(null);
+    const [order, setOrder] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
 
 
@@ -23,25 +25,27 @@ const Confirmation = () => {
         getOrder();
     })
 
-    useEffect(() => {
-        const storedState = localStorage.getItem("selectedOption");
-        if (storedState) {
-          setSelectedOption(JSON.parse(selectedOption));
-        }
-      }, []);
+    // useEffect(() => {
+    //     const storedState = localStorage.getItem("selectedOption");
+    //     if (storedState) {
+    //       setSelectedOption(JSON.parse(selectedOption));
+    //     }
+    //   }, []);
 
     return (
         <div className="confirmation-page">
+            <img opacity="0.95" width="100%" src={dog} alt="a dog picture"/>
+            {order ? (
             <div className="confirmation-header"> 
-                <h1>#{params.orderID}</h1>
                 <h2> 
                     Your Order Has Been Receieved!
                 </h2>
-                <h3>
-                    Total: ${order.order_total}
+                <h3> 
+                    We will update you with more information<br/> as soon as your order is ready!
                 </h3>
                 {(selectedOption) ? (<h3> </h3>) : (<h3> </h3>)}    
             </div>
+            ) : null}
         </div>
     )
 }
