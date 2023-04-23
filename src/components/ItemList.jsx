@@ -73,10 +73,23 @@ const ItemList = () => {
     }
 
     const searchItems = (searchInput) => {
+        setSearchValue(searchInput);
         console.log(searchInput);
-        
-        console.log(itemList.filter((item) => searchInput.join("").toLowerCase().includes(item.name.toLowerCase())));
-        // setFilteredList(itemList.filter(item => event.target.value === item.name));
+
+        if (searchValue.length > 0) {
+            const filteredItems = Object.keys(itemList).filter(index => 
+              Object.values(itemList[index])
+                .join("")
+                .toLowerCase()
+                .includes(searchValue.toLowerCase())
+            );
+            const filteredData = [...new Set([...filteredItems])];
+            const searchList = [];
+            filteredData.forEach((item) => {
+                searchList.push(itemList[item])
+            });
+            setFilteredList(searchList);
+        }
     }
 
     const onDiscountFilter = async () => {
@@ -94,7 +107,7 @@ const ItemList = () => {
         <div>
             <div className="search-bar">
                 <FullWidthTextField searchItems={searchItems} />      
-            </div>  
+            </div> 
             <div className="store-wallpaper">
                 {stores.filter(sto => sto.name===params.storeName).map((s) => (
                     // if (s.name === params.storeName) {
