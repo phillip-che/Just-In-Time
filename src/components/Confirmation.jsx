@@ -24,14 +24,7 @@ const Confirmation = () => {
         }
         getOrder();
     })
-
-    // useEffect(() => {
-    //     const storedState = localStorage.getItem("selectedOption");
-    //     if (storedState) {
-    //       setSelectedOption(JSON.parse(selectedOption));
-    //     }
-    //   }, []);
-
+    
     return (
         <div className="confirmation-page">
             <img opacity="0.95" width="100%" src={dog} alt="a dog picture"/>
